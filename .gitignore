@@ -1,0 +1,20 @@
+# Secrets — never commit these
+newsletter/.env
+newsletter/client_secret.json
+newsletter/token.json
+
+# Logs
+newsletter/newsletter.log
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
