@@ -4,12 +4,15 @@ on:
   schedule:
     # Every Monday at 8:00 AM EST (13:00 UTC)
     - cron: '0 13 * * 1'
-  workflow_dispatch:  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: read  # Minimal required — no write access needed
 
 jobs:
   send-newsletter:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repo
@@ -30,12 +33,10 @@ jobs:
           echo "${{ secrets.GMAIL_TOKEN_JSON_B64 }}" | base64 -d > newsletter/token.json
           echo "${{ secrets.GMAIL_CLIENT_SECRET_JSON_B64 }}" | base64 -d > newsletter/client_secret.json
 
-      - name: Create .env
-        run: |
-          echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" > newsletter/.env
-          echo "RECIPIENT_EMAIL=${{ secrets.RECIPIENT_EMAIL }}" >> newsletter/.env
-
       - name: Generate and send newsletter
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
         run: python newsletter/generate_newsletter.py
 
       - name: Clean up credentials
@@ -43,4 +44,8 @@ jobs:
         run: |
           rm -f newsletter/token.json
           rm -f newsletter/client_secret.json
-          rm -f newsletter/.env
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Newsletter workflow failed on $(date). Check run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"

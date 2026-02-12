@@ -12,7 +12,6 @@ and silently refreshes it when it expires.
 
 from pathlib import Path
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.oauth2.credentials import Credentials
 
 SCOPES     = ["https://www.googleapis.com/auth/gmail.send"]
 SCRIPT_DIR = Path(__file__).parent.resolve()
@@ -35,7 +34,7 @@ def main() -> None:
 
     print("Opening browser for Gmail authorization …")
     flow  = InstalledAppFlow.from_client_secrets_file(str(CREDS_PATH), SCOPES)
-    creds: Credentials = flow.run_local_server(port=0)
+    creds = flow.run_local_server(port=0)
 
     TOKEN_PATH.write_text(creds.to_json(), encoding="utf-8")
     print(f"\n[OK] Authorization complete. Token saved to:\n  {TOKEN_PATH}\n")

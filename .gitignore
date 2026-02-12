@@ -1,10 +1,14 @@
 # Secrets — never commit these
 newsletter/.env
-newsletter/client_secret.json
-newsletter/token.json
+newsletter/.env.*
+newsletter/client_secret*.json
+newsletter/token*.json
 
 # Logs
-newsletter/newsletter.log
+*.log
+
+# One-time setup utilities
+encode_secrets.py
 
 # Python
 .venv/
