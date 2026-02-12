@@ -36,7 +36,7 @@ TOKEN_PATH     = SCRIPT_DIR / "token.json"
 CREDS_PATH     = SCRIPT_DIR / "client_secret.json"
 LOG_PATH       = SCRIPT_DIR / "newsletter.log"
 
-ANTHROPIC_MODEL = "claude-opus-4-6"
+ANTHROPIC_MODEL = "claude-sonnet-4-5-20250929"
 MAX_TOKENS      = 4096
 MAX_SEARCH_USES = 15
 
