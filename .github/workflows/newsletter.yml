@@ -1,9 +1,6 @@
 name: Weekly AI & Data Engineering Newsletter
 
 on:
-  schedule:
-    # Every Monday at 8:00 AM EST (13:00 UTC)
-    - cron: '0 13 * * 1'
   workflow_dispatch:
 
 permissions:

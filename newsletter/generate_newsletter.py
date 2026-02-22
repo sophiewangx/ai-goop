@@ -1,6 +1,5 @@
 """
 Weekly AI & Data Engineering Newsletter Generator
-Runs every Monday at 8:00 AM via Windows Task Scheduler.
 Generates newsletter content via Anthropic API (web search enabled),
 then delivers it to the configured Gmail address.
 """
@@ -326,7 +325,7 @@ def _build_html(subject: str, body_markdown: str) -> str:
         <tr>
           <td style="background:#f8fafc;padding:20px 40px;border-top:1px solid #e2e8f0;">
             <p style="margin:0;font-size:12px;color:#94a3b8;text-align:center;">
-              Generated automatically every Monday at 8:00 AM &nbsp;·&nbsp; AI &amp; Data Engineering Brief
+              AI &amp; Data Engineering Brief
             </p>
           </td>
         </tr>

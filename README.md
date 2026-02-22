@@ -1,13 +1,13 @@
 # AI & Data Engineering Newsletter
 
-An automated weekly newsletter delivered every **Monday at 8:00 AM EST** via GitHub Actions. Uses the Anthropic API to search the web and generate a curated briefing on AI and data engineering news, delivered to your Gmail inbox.
+A newsletter generator that uses the Anthropic API to search the web and generate a curated briefing on AI and data engineering news, delivered to your Gmail inbox.
 
 ---
 
 ## How It Works
 
 ```
-GitHub Actions (cron)
+GitHub Actions (manual trigger)
       │
       ▼
 generate_newsletter.py
@@ -100,11 +100,9 @@ In your repo → **Settings → Secrets → Actions**, add:
 
 ---
 
-## Automation
+## Running
 
-The workflow runs automatically every **Monday at 13:00 UTC (8:00 AM EST)** via GitHub Actions — no server or laptop required.
-
-To trigger a manual run: [Actions tab](https://github.com/sophiewangx/ai-goop/actions) → **Weekly AI & Data Engineering Newsletter** → **Run workflow**.
+To trigger a run: [Actions tab](https://github.com/sophiewangx/ai-goop/actions) → **Weekly AI & Data Engineering Newsletter** → **Run workflow**.
 
 ---
 
@@ -131,5 +129,3 @@ To trigger a manual run: [Actions tab](https://github.com/sophiewangx/ai-goop/ac
 **To change the newsletter content or prompt:**
 Edit `NEWSLETTER_PROMPT` in [newsletter/generate_newsletter.py](newsletter/generate_newsletter.py).
 
-**To change the delivery schedule:**
-Edit the cron expression in [.github/workflows/newsletter.yml](.github/workflows/newsletter.yml). Use [crontab.guru](https://crontab.guru) to build expressions.
